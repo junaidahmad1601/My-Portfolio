@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Junaid Ahmad | Shopify Developer</title>
+  <meta name="description" content="Junaid Ahmad – Shopify Developer & Frontend Developer specializing in responsive websites and Shopify store creation." />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --neon-blue: #22d3ee;
+      --neon-purple: #a855f7;
+      --neon-pink: #ec4899;
+      --dark-bg: #020617;
+      --card-bg: #020617cc;
+      --text-light: #e5e7eb;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #020617, #000000);
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* Navbar */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(2,6,23,0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav {
+      max-width: 1200px;
+      margin: auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav ul { display: flex; gap: 1.5rem; list-style: none; }
+    .nav ul li a { font-weight: 500; color: var(--text-muted); }
+    .nav ul li a:hover { color: var(--neon-blue); }
+
+    /* Hero */
+    .hero {
+      max-width: 1200px;
+      margin: auto;
+      padding: 6rem 1.5rem 4rem;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero h2 {
+      font-size: 3.2rem;
+      font-weight: 700;
+    }
+
+    .hero h2 span {
+      background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p { margin: 1.2rem 0 2rem; max-width: 520px; color: var(--text-muted); }
+
+    .btn {
+      position: relative;
+      display: inline-block;
+      padding: 0.9rem 1.8rem;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+      color: #020617;
+      font-weight: 600;
+      box-shadow: 0 0 25px rgba(34,211,238,0.5);
+      transition: transform .35s ease, box-shadow .35s ease;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 999px;
+      background: linear-gradient(120deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
+      opacity: 0;
+      filter: blur(20px);
+      z-index: -1;
+      transition: opacity .35s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-6px) scale(1.05);
+      box-shadow:
+        0 0 25px rgba(34,211,238,0.7),
+        0 0 45px rgba(168,85,247,0.7),
+        0 0 65px rgba(236,72,153,0.5);
+    }
+
+    .btn:hover::before {
+      opacity: 1;
+    }
+
+    /* Image */
+    .hero-image {
+      position: relative;
+      width: 320px;
+      height: 320px;
+      margin: auto;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
+      padding: 6px;
+      box-shadow: 0 0 60px rgba(168,85,247,0.6);
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      background: #020617;
+    }
+
+    /* Sections */
+    section { max-width: 1200px; margin: auto; padding: 4.5rem 1.5rem; }
+    section h3 { font-size: 2.3rem; text-align: center; margin-bottom: 2.5rem; }
+
+    /* Cards */
+    .glass {
+      background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      backdrop-filter: blur(20px);
+    }
+
+    /* Skills */
+    .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+    .skill { padding: 2rem; text-align: center; }
+    .skill h4 { margin-bottom: .6rem; color: var(--neon-blue); }
+
+    /* Projects */
+    .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+
+    .project {
+      padding: 2rem;
+      position: relative;
+      transition: transform 0.4s ease, box-shadow 0.4s ease, border 0.4s ease;
+      cursor: pointer;
+    }
+
+    .project::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      background: linear-gradient(120deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
+      opacity: 0;
+      filter: blur(20px);
+      z-index: -1;
+      transition: opacity 0.4s ease;
+    }
+
+    .project:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow:
+        0 0 25px rgba(34,211,238,0.6),
+        0 0 45px rgba(168,85,247,0.6),
+        0 0 65px rgba(236,72,153,0.4);
+      border: 1px solid rgba(168,85,247,0.6);
+    }
+
+    .project:hover::before {
+      opacity: 1;
+    }
+
+    .project h4 {
+      transition: color 0.3s ease;
+    }
+
+    .project:hover h4 {
+      color: var(--neon-blue);
+    }
+
+    .project a {
+      margin-top: 1rem;
+      display: inline-block;
+      color: var(--neon-purple);
+      transition: color 0.3s ease, letter-spacing 0.3s ease;
+    }
+
+    .project:hover a {
+      color: var(--neon-pink);
+      letter-spacing: 1px;
+    }
+
+    /* Contact */
+    .contact-links { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+
+    .contact-links a {
+      position: relative;
+      padding: 0.9rem 1.6rem;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+      color: #020617;
+      font-weight: 600;
+      box-shadow: 0 0 20px rgba(34,211,238,0.6);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      overflow: hidden;
+    }
+
+    .contact-links a::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 999px;
+      background: linear-gradient(120deg, var(--neon-blue), var(--neon-purple), var(--neon-pink));
+      opacity: 0;
+      filter: blur(18px);
+      z-index: -1;
+      transition: opacity 0.35s ease;
+    }
+
+    .contact-links a:hover {
+      transform: translateY(-6px) scale(1.05);
+      box-shadow:
+        0 0 25px rgba(34,211,238,0.7),
+        0 0 45px rgba(168,85,247,0.7),
+        0 0 65px rgba(236,72,153,0.5);
+    }
+
+    .contact-links a:hover::before {
+      opacity: 1;
+    }
+
+    footer { text-align: center; padding: 2.5rem 1.5rem; color: var(--text-muted); }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; text-align: center; }
+      .hero-image { margin-top: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <h1>Junaid Ahmad</h1>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="hero">
+  <div>
+    <h2>Shopify & Frontend <span>Developer</span></h2>
+    <p>I design and develop high‑quality Shopify stores and responsive websites with a modern, conversion‑focused UI.</p>
+    <a href="#contact" class="btn">Hire Me</a>
+  </div>
+
+  <div class="hero-image">
+    <!-- Replace src with your own image -->
+    <img src="C:\Users\rizza\Downloads\WhatsApp Image 2026-01-03 at 2.52.54 PM.jpeg" alt="Junaid Ahmad">
+  </div>
+</section>
+
+<section id="about">
+  <h3>About Me</h3>
+  <div class="glass" style="padding:2.5rem; text-align:center; max-width:900px; margin:auto;">
+    <p style="color:var(--text-muted)">Passionate student with strong skills in HTML, CSS, JavaScript, and Python. Experienced in creating Shopify stores and responsive websites. Aiming to grow in tech and pursue a future as an AI/ML Engineer.</p>
+  </div>
+</section>
+
+<section id="skills">
+  <h3>Skills</h3>
+  <div class="skills">
+    <div class="skill glass"><h4>Frontend</h4><p>HTML, CSS, JavaScript</p></div>
+    <div class="skill glass"><h4>Shopify</h4><p>Store Setup, Themes, Customization</p></div>
+    <div class="skill glass"><h4>Responsive UI</h4><p>Mobile‑First Design</p></div>
+    <div class="skill glass"><h4>Extras</h4><p>Product Listing, App Integration</p></div>
+  </div>
+</section>
+
+<section id="projects">
+  <h3>Projects</h3>
+  <div class="projects">
+    <div class="project glass"><h4>Hiba's Collection</h4><a href="https://share.google/dXDFHPXx1ZF2IucdX" target="_blank">View Project →</a></div>
+    <div class="project glass"><h4>Lotus Furniture</h4><a href="https://share.google/qzLslRtfWzks5lfaF" target="_blank">View Project →</a></div>
+    <div class="project glass"><h4>Prepped Skincare</h4><a href="https://share.google/7yJY1YvkLW9k9GnnE" target="_blank">View Project →</a></div>
+    <div class="project glass"><h4>Minicloud</h4><a href="https://share.google/kor4e644Z7neYSVpK" target="_blank">View Project →</a></div>
+    <div class="project glass"><h4>Bright Fabrics</h4><a href="https://share.google/3dmUpGnvMwHKtot4I" target="_blank">View Project →</a></div>
+    <div class="project glass"><h4>Proffice Furniture</h4><a href="https://share.google/fqStKCPbl1wzBXG42" target="_blank">View Project →</a></div>
+  </div>
+</section>
+
+<section id="contact">
+  <h3>Contact</h3>
+  <div class="contact-links">
+    <a href="tel:+923268550348">Call</a>
+    <a href="mailto:junaidahmad1601@gmail.com">Email</a>
+    <a href="https://www.facebook.com/share/1G8iFS6Fkv/" target="_blank">Facebook</a>
+    <a href="https://www.instagram.com/fr.junaid_?igsh=eHI5dGtxN2Y1OWx6" target="_blank">Instagram</a>
+    <a href="https://wa.me/qr/IYAC3XQKY5WNH1" target="_blank">WhatsApp</a>
+  </div>
+</section>
+
+<footer>© 2026 Junaid Ahmad. All Rights Reserved.</footer>
+
+</body>
+</html>
